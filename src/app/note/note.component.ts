@@ -18,25 +18,22 @@ export class NoteComponent implements OnInit {
   ngOnInit() {
     this.getNotes();
     this.socket.on('newNote', () => {
-        this.getNotes();
-        this.toastr.Success('Note Added');
-      });
+      this.getNotes();
+      this.toastr.Success('Note Added');
+    });
   }
 
   createNote(note) {
-    this.http.post('/api/note', { content: note})
-      .subscribe();
+    this.http.post('/api/note', { content: note }).subscribe();
   }
 
   getNotes() {
-    this.http.get('/api/note')
-      .subscribe((notes) => {
-        this.noteList = notes;
-      });
+    this.http.get('/api/note').subscribe((notes) => {
+      this.noteList = notes;
+    });
   }
 
- deleteNote() {
+  deleteNote() {
     this.toastr.Error('Oops something went wrong');
   }
-
 }

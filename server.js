@@ -6,19 +6,19 @@ const socketIo = require('socket.io');
 
 // Mock data
 const notes = [
-    {
-        content: 'Note content 1'
-    },
-    {
-        content: 'Note content 2'
-    },
-    {
-        content: 'Note content 3'
-    },
-    {
-        content: 'Note content 4'
-    }
-]
+  {
+    content: 'Note content 1'
+  },
+  {
+    content: 'Note content 2'
+  },
+  {
+    content: 'Note content 3'
+  },
+  {
+    content: 'Note content 4'
+  }
+];
 
 const port = process.env.port || 3000;
 
@@ -26,17 +26,17 @@ const app = express();
 const router = express.Router();
 
 app.use(bodyParser.urlencoded({ extended: false }));
-app.use(bodyParser.json())
+app.use(bodyParser.json());
 
 router.get('/note', (req, res) => {
-    res.send(notes);
+  res.send(notes);
 });
 
 router.post('/note', (req, res) => {
-    const io = req.app.get('io');
-    const note = req.body;
-    notes.push(note)
-    io.emit('newNote', notes);
+  const io = req.app.get('io');
+  const note = req.body;
+  notes.push(note);
+  io.emit('newNote', notes);
 });
 
 app.use('/api', router);
