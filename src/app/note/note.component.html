@@ -1,0 +1,21 @@
+<div class="container mt-3">
+  <h1>Realtime Note Application</h1>
+  <div class="row">
+    <input type="text" name="" id="" class="form-control col col-sm-8" #note>
+    <input type="button" value="Create" class="btn btn-primary col col-sm-3 offset-1" (click)="createNote(note.value)">
+  </div>
+</div>
+
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-sm-3 mt-3" *ngFor="let note of noteList; let id = index">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title">Note {{ id + 1 }}</h5>
+          <p class="card-text">{{ note.content }}</p>
+          <a href="#" class="btn btn-danger" (click)="deleteNote()">Delete</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
